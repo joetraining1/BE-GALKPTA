@@ -237,6 +237,7 @@ Route::prefix('auth')->group(function(){
         Route::put('user-update/{id}', 'update');
         Route::delete('user-delete/{id}', 'destroy');
         Route::get('user/{id}', 'show');
+        Route::get('testcon', 'testApi');
     });
     
     Route::controller(TypeController::class)->group(function () {

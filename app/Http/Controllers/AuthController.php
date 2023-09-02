@@ -6,6 +6,7 @@ use App\Models\type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -14,7 +15,13 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'testApi']]);
+    }
+
+    public function testApi(Request $request){
+        return response()->json([
+            'message' => 'you are connected to this api.'
+        ], 200);
     }
 
     public function login(Request $request)
@@ -83,13 +90,13 @@ class AuthController extends Controller
             'alamat' => $request->alamat
         ]);
 
-        $token = Auth::login($user);
+        // $token = Auth::login($user);
         return response()->json([
             'status' => 'success',
             'message' => 'User created successfully',
             'user' => $user,
             'authorisation' => [
-                'token' => $token,
+                // 'token' => $token,
                 'type' => 'bearer',
             ]
         ]);
