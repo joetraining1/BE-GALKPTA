@@ -45,7 +45,7 @@ class AuthController extends Controller
         $userType = type::find($user->type_id);
         $userData = [
             'name' => $user->name,
-            'type' => $userType->title,
+            // 'type' => $userType->title,
         ];
 
         return response()->json([
@@ -90,13 +90,13 @@ class AuthController extends Controller
             'alamat' => $request->alamat
         ]);
 
-        // $token = Auth::login($user);
+        $token = Auth::login($user);
         return response()->json([
             'status' => 'success',
             'message' => 'User created successfully',
             'user' => $user,
             'authorisation' => [
-                // 'token' => $token,
+                'token' => $token,
                 'type' => 'bearer',
             ]
         ]);
