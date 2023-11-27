@@ -42,7 +42,7 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
-        $userType = type::find($user->type_id);
+        // $userType = type::find($user->type_id);
         $userData = [
             'name' => $user->name,
             // 'type' => $userType->title,
